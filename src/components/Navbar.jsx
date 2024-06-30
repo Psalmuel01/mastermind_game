@@ -25,9 +25,7 @@ const Navbar = () => {
 
                 <div className="md:flex-[0.5] flex-initial justify-center items-center"></div>
                 {account ? (
-                    <button className="shadow-lg  shadow-blue-900 text-white ml-8 bg-[#b2b657] hover:bg-[#D3EE70] md:text-xs p-[9.5px] rounded-full ">
-                        {slice(address, 4, 4, 11)}
-                    </button>
+                    <div><ConnectWallet/></div>
                 ) : (
                     <div>
                         <ConnectWallet />

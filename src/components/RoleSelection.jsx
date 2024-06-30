@@ -1,20 +1,22 @@
 import React from "react";
 import { useGlobalState } from "../store/Data";
-import {
-  setCodebreaker,
-  setCodemaker,
-  checkActiveGame,
-  getRole,
-} from "../store/wallet";
+import { useContractContext } from "../store/wallet";
+// import {
+//   setCodebreaker,
+//   setCodemaker,
+//   checkActiveGame,
+//   getRole,
+// } from "../store/wallet";
 
 const RoleSelection = ({ setRole }) => {
+  const { _setCodeBreakerAddress, _setCodeMakerAddress, checkActiveGame, getRole } = useContractContext();
   const [, setActivegame] = useGlobalState("activegame");
 
   const handleRoleSelection = async (role) => {
     if (role === "codeMaker") {
-      await setCodemaker();
+      await _setCodeMakerAddress();
     } else if (role === "codeBreaker") {
-      await setCodebreaker();
+      await _setCodeBreakerAddress();
     }
 
     const gameActive = await checkActiveGame();

@@ -3,16 +3,21 @@ import Game from "./Game";
 import Leaderboard from "./Leaderboard";
 import SoundControl from "./SoundControl";
 import InfoBox from "./InfoBox";
-import { checkActiveGame } from "../store/wallet";
+// import { checkActiveGame } from "../store/wallet";
 import { useGlobalState } from "../store/Data";
 import { TbLivePhoto, TbLivePhotoOff } from "react-icons/tb";
 import { HiOutlineStatusOffline, HiOutlineStatusOnline } from "react-icons/hi";
+import { useContractContext } from "../store/wallet";
 const GamePlay = () => {
+  const { checkActiveGame } = useContractContext();
+
   const [maker] = useGlobalState("maker");
   const [breaker] = useGlobalState("breaker");
   const [activegame] = useGlobalState("activegame");
   const [makerscore] = useGlobalState("makerscore");
   const [breakerscore] = useGlobalState("breakerscore");
+
+  console.log(maker, breaker, activegame, makerscore, breakerscore);
 
   const codeMakerScore = makerscore;
   const codeBreakerScore = breakerscore;

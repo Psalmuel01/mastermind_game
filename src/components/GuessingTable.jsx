@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from "react";
-import {
-  _makeGuess,
-  _getLatestFeedback,
-  _getAllGuessesAndFeedback,
-  _getSecretCode,
-  getcodebreakerscore,
-  getcodemakerscore,
-  getCodebreaker,
-  getCodemaker,
-} from "../store/wallet";
+// import {
+//   _makeGuess,
+//   _getLatestFeedback,
+//   _getAllGuessesAndFeedback,
+//   _getSecretCode,
+//   getcodebreakerscore,
+//   getcodemakerscore,
+//   getCodebreaker,
+//   getCodemaker,
+// } from "../store/wallet";
 import { COLORS, NUM_ROWS, CODE_LENGTH } from "../store/lib";
+import { useContractContext } from "../store/wallet";
 
 const GuessingTable = ({
   secretCode,
@@ -19,6 +20,17 @@ const GuessingTable = ({
   gameWon,
   setGameWon,
 }) => {
+  const {
+    _makeGuess,
+    _getLatestFeedback,
+    _getAllGuessesAndFeedback,
+    _getSecretCode,
+    getcodebreakerscore,
+    getcodemakerscore,
+    getCodebreaker,
+    getCodemaker,
+  } = useContractContext();
+  
   const [guesses, setGuesses] = useState(() =>
     Array.from({ length: NUM_ROWS }, () =>
       Array.from({ length: CODE_LENGTH }, () => null)
@@ -126,11 +138,11 @@ const GuessingTable = ({
       const newFeedback = Array.from({ length: NUM_ROWS }, (_, rowIndex) =>
         rowIndex < allFeedback.length
           ? Array.from({ length: CODE_LENGTH }, (_, i) => {
-              if (i < allFeedback[rowIndex][0]) return "black";
-              if (i < allFeedback[rowIndex][0] + allFeedback[rowIndex][1])
-                return "white";
-              return null;
-            })
+            if (i < allFeedback[rowIndex][0]) return "black";
+            if (i < allFeedback[rowIndex][0] + allFeedback[rowIndex][1])
+              return "white";
+            return null;
+          })
           : Array(CODE_LENGTH).fill(null)
       );
       setFeedback(newFeedback);
@@ -195,8 +207,8 @@ const GuessingTable = ({
                     fb === "black"
                       ? "#000"
                       : fb === "white"
-                      ? "#f5f5f5"
-                      : "#d1d5db",
+                        ? "#f5f5f5"
+                        : "#d1d5db",
                 }}
               ></div>
             ))}

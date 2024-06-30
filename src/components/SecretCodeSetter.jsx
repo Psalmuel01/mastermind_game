@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { _startGame } from "../store/wallet";
+// import { _startGame } from "../store/wallet";
 import { useGlobalState } from "../store/Data";
 import { COLORS, CODE_LENGTH } from "../store/lib";
+import { useContractContext } from "../store/wallet";
 
 const SecretCodeSetter = ({ setSecretCode, setIsSettingSecretCode }) => {
+  const { _startGame } = useContractContext();
+
   const [activegame] = useGlobalState("activegame");
   const [secretCode, setLocalSecretCode] = useState(
     Array(CODE_LENGTH).fill(null)
