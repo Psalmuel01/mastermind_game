@@ -27,6 +27,7 @@
     "react-hooks-global-state": "^2.1.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.4.5",
+    "react-spinners": "^0.14.1",
     "react-toastify": "^10.0.5",
     "solc": "^0.8.19",
     "thirdweb": "^5.31.0",

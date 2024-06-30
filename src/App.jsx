@@ -12,23 +12,24 @@ import { useEffect, useState } from "react";
 const App = () => {
 	const [loaded, setLoaded] = useState(false);
 
-	const { activeAccount, getCodemaker,
+	const { activeAccount,
 		checkActiveGame,
 		_getLatestFeedback,
+		getCodemaker,
 		getCodebreaker,
 		getcodebreakerscore, getcodemakerscore } = useContractContext();
 
 	useEffect(() => {
-		const loadData = async () => {
+		const loadData = () => {
 			console.log("Blockchain loaded");
 			setLoaded(true);
-			activeAccount && await checkActiveGame();
-			await checkActiveGame();
-			await getCodemaker();
-			await getcodemakerscore();
-			await getcodebreakerscore();
-			await getCodebreaker();
-			await _getLatestFeedback();
+			activeAccount && checkActiveGame();
+			checkActiveGame();
+			getCodemaker();
+			getCodebreaker();
+			getcodemakerscore();
+			getcodebreakerscore();
+			_getLatestFeedback();
 		};
 		loadData();
 	}, []);
